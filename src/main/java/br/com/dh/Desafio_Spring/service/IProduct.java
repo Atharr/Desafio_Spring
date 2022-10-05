@@ -1,5 +1,6 @@
 package br.com.dh.Desafio_Spring.service;
 
+import br.com.dh.Desafio_Spring.dto.ProductDTO;
 import br.com.dh.Desafio_Spring.exception.NotFoundException;
 import br.com.dh.Desafio_Spring.model.Product;
 
@@ -11,6 +12,6 @@ import java.util.List;
  */
 public interface IProduct {
   Product getProduct(String name) throws NotFoundException;
-  List<Product> getAll();
+  List<ProductDTO> getAll();
   void save(Product newProduct);
 }

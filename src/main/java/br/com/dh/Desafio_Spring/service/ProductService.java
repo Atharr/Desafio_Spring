@@ -1,5 +1,6 @@
 package br.com.dh.Desafio_Spring.service;
 
+import br.com.dh.Desafio_Spring.dto.ProductDTO;
 import br.com.dh.Desafio_Spring.exception.NotFoundException;
 import br.com.dh.Desafio_Spring.model.Product;
 import br.com.dh.Desafio_Spring.repository.ProductRepo;
@@ -16,8 +17,8 @@ public class ProductService implements IProduct {
   private ProductRepo repo;
 
   @Override
-  public List<Product> getAll() {
-    return repo.getAll().stream().collect(Collectors.toList());
+  public List<ProductDTO> getAll() {
+    return repo.getAll().stream().map(ProductDTO::new).collect(Collectors.toList());
   }
 
   @Override
