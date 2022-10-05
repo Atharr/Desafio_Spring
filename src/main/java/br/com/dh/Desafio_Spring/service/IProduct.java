@@ -14,4 +14,6 @@ public interface IProduct {
   Product getProduct(String name) throws NotFoundException;
   List<ProductDTO> getAll();
   void save(Product newProduct);
+
+  List<ProductDTO> getAllByCategory(String category);
 }

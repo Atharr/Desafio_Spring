@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 /**
@@ -70,5 +71,13 @@ public class ProductRepo {
     } catch (Exception ex) {
       System.out.println("Erro ao gravar o arquivo.");
     }
+  }
+
+  public List<Product> getAllByCategory(String category) {
+    List<Product> products = getAll();
+
+    return products.stream()
+            .filter((p)->p.getCategory().equalsIgnoreCase(category))
+            .collect(Collectors.toList());
   }
 }

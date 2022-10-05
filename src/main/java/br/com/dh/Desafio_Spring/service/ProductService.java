@@ -18,7 +18,9 @@ public class ProductService implements IProduct {
 
   @Override
   public List<ProductDTO> getAll() {
-    return repo.getAll().stream().map(ProductDTO::new).collect(Collectors.toList());
+    return repo.getAll().stream()
+            .map(ProductDTO::new)
+            .collect(Collectors.toList());
   }
 
   @Override
@@ -34,5 +36,12 @@ public class ProductService implements IProduct {
   @Override
   public void save(Product product) {
     repo.save(product);
+  }
+
+  @Override
+  public List<ProductDTO> getAllByCategory(String category) {
+    return repo.getAllByCategory(category).stream()
+            .map(ProductDTO::new)
+            .collect(Collectors.toList());
   }
 }
