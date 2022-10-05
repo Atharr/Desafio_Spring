@@ -34,8 +34,10 @@ public class ProductService implements IProduct {
   }
 
   @Override
-  public void save(Product product) {
-    repo.save(product);
+  public List<ProductDTO> save(List<Product> product) {
+    return  repo.save(product).stream()
+              .map(ProductDTO::new)
+              .collect(Collectors.toList());
   }
 
   @Override

@@ -57,20 +57,21 @@ public class ProductRepo {
   /**
    * @name save
    * @description Saves a new product in the product list file.
-   * @param newProduct - the product to be saved.
+   * @param newProducts - the product to be saved.
    */
-  public void save(Product newProduct) {
+  public List<Product> save(List<Product> newProducts) {
     ObjectMapper mapper = new ObjectMapper();
     ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
 
     List<Product> products = new ArrayList<>(getAll());
-    products.add(newProduct);
+    products.addAll(newProducts);
 
     try {
       writer.writeValue(new File(linkFile), products);
     } catch (Exception ex) {
       System.out.println("Erro ao gravar o arquivo.");
     }
+    return products;
   }
 
   public List<Product> getAllByCategory(String category) {
