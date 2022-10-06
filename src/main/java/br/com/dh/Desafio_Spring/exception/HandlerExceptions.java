@@ -21,4 +21,16 @@ public class HandlerExceptions {
 
     return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
   }
+
+  @ExceptionHandler(DuplicateException.class)
+  public ResponseEntity<ExceptionDetails> handleDuplicateException(DuplicateException e){
+    ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+            .title("Objeto Duplicado")
+            .message(e.getMessage())
+            .status(HttpStatus.CONFLICT.value())
+            .timeStamp(LocalDateTime.now())
+            .build();
+
+    return new ResponseEntity<>(exceptionDetails, HttpStatus.CONFLICT);
+  }
 }

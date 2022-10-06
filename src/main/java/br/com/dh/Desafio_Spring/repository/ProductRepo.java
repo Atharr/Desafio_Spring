@@ -1,5 +1,6 @@
 package br.com.dh.Desafio_Spring.repository;
 
+import br.com.dh.Desafio_Spring.dto.ProductSaveRequestDTO;
 import br.com.dh.Desafio_Spring.model.Product;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,12 +60,13 @@ public class ProductRepo {
    * @description Saves a new product in the product list file.
    * @param newProducts - the product to be saved.
    */
-  public List<Product> save(List<Product> newProducts) {
+  public List<Product> save(List<ProductSaveRequestDTO> newProducts) {
     ObjectMapper mapper = new ObjectMapper();
     ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
 
     List<Product> products = new ArrayList<>(getAll());
-    products.addAll(newProducts);
+    newProducts
+            .forEach(p -> products.add(new Product((long) products.size() + 1, p)));
 
     try {
       writer.writeValue(new File(linkFile), products);

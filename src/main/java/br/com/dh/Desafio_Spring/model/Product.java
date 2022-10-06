@@ -1,11 +1,10 @@
 package br.com.dh.Desafio_Spring.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import br.com.dh.Desafio_Spring.dto.ProductSaveRequestDTO;
+import lombok.*;
 
 import java.math.BigDecimal;
+
 
 @Getter
 @Setter
@@ -26,13 +25,19 @@ public class Product implements Comparable<Product> {
   private Boolean freeShipping;
   private String prestige;
 
+  public Product(Long i, ProductSaveRequestDTO p) {
+    this.productId = i;
+    this.name = p.getName();
+    this.category = p.getCategory();
+    this.brand = p.getBrand();
+    this.price = p.getPrice();
+    this.quantity = p.getQuantity();
+    this.freeShipping = p.getFreeShipping();
+    this.prestige = p.getPrestige();
+  }
+
+
   @Override
-/**
- * @name compareTo
- * @description comparison needed for sort methods
- * @param Product other - the
- * @return -1, 0, +1 if the compared item is lesser, equal or greater than the base item
- */
   public int compareTo(Product other) {
     return this.getName().compareTo(other.getName());
   }
