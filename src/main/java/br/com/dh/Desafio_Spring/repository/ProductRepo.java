@@ -75,4 +75,14 @@ public class ProductRepo {
     }
     return products;
   }
+
+  public void decreaseProductStock(Long productId, int quantinty){
+    List<Product> listProducts = getAll();
+
+    for (Product p : listProducts){
+      if (p.getProductId().equals(productId)) {
+        p.setQuantity(p.getQuantity() - quantinty);
+      }
+    }
+  }
 }

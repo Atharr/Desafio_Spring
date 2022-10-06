@@ -33,4 +33,16 @@ public class HandlerExceptions {
 
     return new ResponseEntity<>(exceptionDetails, HttpStatus.CONFLICT);
   }
+
+  @ExceptionHandler(StockNotAvailableException.class)
+  public ResponseEntity<ExceptionDetails> handleStockNotAvailableException(StockNotAvailableException e){
+    ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+            .title("Entidade não processável")
+            .message(e.getMessage())
+            .status(HttpStatus.UNPROCESSABLE_ENTITY.value())
+            .timeStamp(LocalDateTime.now())
+            .build();
+
+    return new ResponseEntity<>(exceptionDetails, HttpStatus.UNPROCESSABLE_ENTITY);
+  }
 }

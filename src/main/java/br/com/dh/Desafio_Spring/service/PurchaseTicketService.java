@@ -2,6 +2,7 @@ package br.com.dh.Desafio_Spring.service;
 
 import br.com.dh.Desafio_Spring.dto.ProductRequestDTO;
 import br.com.dh.Desafio_Spring.dto.PurchaseTicketDTO;
+import br.com.dh.Desafio_Spring.exception.StockNotAvailableException;
 import br.com.dh.Desafio_Spring.model.Product;
 import br.com.dh.Desafio_Spring.model.PurchaseTicket;
 import br.com.dh.Desafio_Spring.repository.ProductRepo;
@@ -27,10 +28,15 @@ public class PurchaseTicketService implements IPurchaseTicket {
     @Override
     public PurchaseTicketDTO save(List<ProductRequestDTO> newPurchaseTicket) {
         List<Product> product = repoProduct.getAll();
+
         List<Product> listProductFilter = new ArrayList<>();
         product.forEach(p -> {
             newPurchaseTicket.forEach(n -> {
                 if (Objects.equals(p.getProductId(), n.getProductId())) {
+                    if (p.getQuantity() - n.getQuantity() < 0){
+                        throw new StockNotAvailableException("Stock de produto insuficiente");
+                    }
+                    repoProduct.decreaseProductStock(n.getProductId(),n.getQuantity());
                     p.setQuantity(n.getQuantity());
                     listProductFilter.add(p);
                 }
