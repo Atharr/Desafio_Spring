@@ -13,4 +13,13 @@ public class PurchaseTicket {
     private Long ticketId;
     private List<Product> articles;
     private BigDecimal total;
+
+    @Override
+    public String toString() {
+        return "PurchaseTicket{" +
+                "ticketId=" + ticketId +
+                ", articles=" + articles +
+                ", total=" + total +
+                '}';
+    }
 }

@@ -5,12 +5,15 @@ import br.com.dh.Desafio_Spring.model.PurchaseTicket;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import org.springframework.stereotype.Repository;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Repository
 public class PurchaseTicketRepo {
     private final String linkFile = "src/main/resources/purchase-result.json";
     ObjectMapper mapper = new ObjectMapper();
@@ -25,21 +28,21 @@ public class PurchaseTicketRepo {
         return purchases;
     }
 
-    public List<PurchaseTicket> save(List<Product> newTicket) {
+    public void save(List<Product> newTicket, BigDecimal totalPrice) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
 
-        PurchaseTicket ticket = new PurchaseTicket(getAll().size()+1,newTicket,);
+        PurchaseTicket ticket = new PurchaseTicket((long) (getAll().size()+1), newTicket, totalPrice);
+        System.out.println(ticket);
+//        List<PurchaseTicket> products = new ArrayList<>(getAll());
+//        products.addAll(newTicket);
 
-        List<PurchaseTicket> products = new ArrayList<>(getAll());
-        products.addAll(newTicket);
-
-        try {
-            writer.writeValue(new File(linkFile), products);
-        } catch (Exception ex) {
-            System.out.println("Erro ao gravar o arquivo.");
-        }
-        return products;
+//        try {
+//            writer.writeValue(new File(linkFile), products);
+//        } catch (Exception ex) {
+//            System.out.println("Erro ao gravar o arquivo.");
+//        }
+//        return products;
     }
 
 

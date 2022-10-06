@@ -27,6 +27,20 @@ public class Product implements Comparable<Product> {
   private String prestige;
 
   @Override
+  public String toString() {
+    return "Product{" +
+            "productId=" + productId +
+            ", name='" + name + '\'' +
+            ", category='" + category + '\'' +
+            ", brand='" + brand + '\'' +
+            ", price=" + price +
+            ", quantity=" + quantity +
+            ", freeShipping=" + freeShipping +
+            ", prestige='" + prestige + '\'' +
+            '}';
+  }
+
+  @Override
 /**
  * @name compareTo
  * @description comparison needed for sort methods
