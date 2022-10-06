@@ -5,6 +5,7 @@ import br.com.dh.Desafio_Spring.exception.NotFoundException;
 import br.com.dh.Desafio_Spring.model.Product;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @interface IProduct
@@ -12,8 +13,6 @@ import java.util.List;
  */
 public interface IProduct {
   Product getProduct(String name) throws NotFoundException;
-  List<ProductDTO> getAll();
+  List<ProductDTO> getAll(Map<String,String> params);
   List<ProductDTO> save(List<Product> product);
-
-  List<ProductDTO> getAllByCategory(String category);
 }

@@ -7,20 +7,67 @@ import br.com.dh.Desafio_Spring.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ProductService implements IProduct {
   @Autowired
   private ProductRepo repo;
 
+  private List<Product> sortList(List<Product> products, String order) {
+    Comparator<Product> byName = Comparator.comparing(Product::getName);
+    Comparator<Product> byPrice = Comparator.comparing(Product::getPrice);
+
+    switch (order) {
+      case "0":
+        return products.stream().sorted(byName).collect(Collectors.toList());
+      case "1":
+        return products.stream().sorted(byName.reversed()).collect(Collectors.toList());
+      case "2":
+        return products.stream().sorted(byPrice).collect(Collectors.toList());
+      case "3":
+        return products.stream().sorted(byPrice.reversed()).collect(Collectors.toList());
+    }
+
+    return products.stream().sorted().collect(Collectors.toList());
+  }
+
+  private List<Product> filterList(List<Product> products, Map<String,String> filters) {
+    Stream<Product> s = products.stream();
+
+    for (Map.Entry<String,String> f: filters.entrySet()) {
+      switch (f.getKey()) {
+        case "category":
+          s = s.filter(product -> product.getCategory().equalsIgnoreCase(f.getValue()));
+          break;
+        case "freeShipping":
+          s = s.filter(product -> product.getFreeShipping() ^ f.getValue().equalsIgnoreCase("false"));
+          break;
+        case "prestige":
+          s = s.filter(product -> product.getPrestige().equalsIgnoreCase(f.getValue()));
+          break;
+      }
+    }
+
+    return s.collect(Collectors.toList());
+  }
+
   @Override
-  public List<ProductDTO> getAll() {
-    return repo.getAll().stream()
-            .map(ProductDTO::new)
-            .collect(Collectors.toList());
+  public List<ProductDTO> getAll(Map<String,String> params) {
+    List<Product> products = repo.getAll();
+
+    if (params.containsKey("order")) {
+      products = sortList(products, params.get("order"));
+      params.remove("order");
+    }
+
+    if (!params.isEmpty()) {
+      products = filterList(products, params);
+    }
+
+    return products.stream().map(ProductDTO::new).collect(Collectors.toList());
   }
 
   @Override
@@ -35,16 +82,8 @@ public class ProductService implements IProduct {
 
   @Override
   public List<ProductDTO> save(List<Product> product) {
-
-    return  repo.save(product).stream()
+    return repo.save(product).stream()
               .map(ProductDTO::new)
               .collect(Collectors.toList());
-  }
-
-  @Override
-  public List<ProductDTO> getAllByCategory(String category) {
-    return repo.getAllByCategory(category).stream()
-            .map(ProductDTO::new)
-            .collect(Collectors.toList());
   }
 }
