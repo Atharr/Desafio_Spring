@@ -33,8 +33,6 @@ public class PurchaseTicketRepo {
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         List<PurchaseTicket> ticketList = new ArrayList<>(getAll());
         PurchaseTicket ticket = new PurchaseTicket((long) (ticketList.size()+1), newTicket, totalPrice);
-        System.out.println(ticket);
-
         ticketList.add(ticket);
 
         try {

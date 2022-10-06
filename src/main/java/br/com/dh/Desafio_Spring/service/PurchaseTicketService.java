@@ -38,7 +38,6 @@ public class PurchaseTicketService implements IPurchaseTicket {
         });
         BigDecimal totalPrice = listProductFilter.stream().map((p) -> BigDecimal.valueOf(p.getQuantity()).multiply(p.getPrice())).reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        System.out.println(listProductFilter);
         PurchaseTicket newTicket = repoTicket.save(listProductFilter, totalPrice);
         return new PurchaseTicketDTO(newTicket);
     }

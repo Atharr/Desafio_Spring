@@ -26,13 +26,4 @@ public class ProductDTO {
     this.name = product.getName();
     this.quantity = product.getQuantity();
   }
-
-  @Override
-  public String toString() {
-    return "ProductDTO{" +
-            "productId=" + productId +
-            ", name='" + name + '\'' +
-            ", quantity=" + quantity +
-            '}';
-  }
 }
