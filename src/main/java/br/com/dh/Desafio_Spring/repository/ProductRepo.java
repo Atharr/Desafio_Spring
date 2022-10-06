@@ -73,12 +73,4 @@ public class ProductRepo {
     }
     return products;
   }
-
-  public List<Product> getAllByCategory(String category) {
-    List<Product> products = getAll();
-
-    return products.stream()
-            .filter((p)->p.getCategory().equalsIgnoreCase(category))
-            .collect(Collectors.toList());
-  }
 }
