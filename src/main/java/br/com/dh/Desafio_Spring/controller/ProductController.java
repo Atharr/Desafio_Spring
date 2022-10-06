@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -17,11 +18,8 @@ public class ProductController {
   private IProduct service;
 
   @GetMapping("/articles")
-  public ResponseEntity<List<ProductDTO>> getAll(@RequestParam(required = false) String category) {
-    if(category != null){
-      return new ResponseEntity<>(service.getAllByCategory(category), HttpStatus.OK);
-    }
-    return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+  public ResponseEntity<List<ProductDTO>> getAll(@RequestParam Map<String,String> params) {
+    return new ResponseEntity<>(service.getAll(params), HttpStatus.OK);
   }
 
   @PostMapping("/insert-articles-request")
