@@ -1,6 +1,7 @@
 package br.com.dh.Desafio_Spring.service;
 
 import br.com.dh.Desafio_Spring.dto.ProductRequestDTO;
+import br.com.dh.Desafio_Spring.dto.PurchaseTicketDTO;
 import br.com.dh.Desafio_Spring.model.Product;
 import br.com.dh.Desafio_Spring.model.PurchaseTicket;
 import br.com.dh.Desafio_Spring.repository.ProductRepo;
@@ -24,7 +25,7 @@ public class PurchaseTicketService implements IPurchaseTicket {
     private ProductRepo repoProduct;
 
     @Override
-    public PurchaseTicket save(List<ProductRequestDTO> newPurchaseTicket) {
+    public PurchaseTicketDTO save(List<ProductRequestDTO> newPurchaseTicket) {
         List<Product> product = repoProduct.getAll();
         List<Product> listProductFilter = new ArrayList<>();
         product.forEach(p -> {
@@ -38,8 +39,8 @@ public class PurchaseTicketService implements IPurchaseTicket {
         BigDecimal totalPrice = listProductFilter.stream().map((p) -> BigDecimal.valueOf(p.getQuantity()).multiply(p.getPrice())).reduce(BigDecimal.ZERO, BigDecimal::add);
 
         System.out.println(listProductFilter);
-        repoTicket.save(listProductFilter, totalPrice);
-        return null;
+        PurchaseTicket newTicket = repoTicket.save(listProductFilter, totalPrice);
+        return new PurchaseTicketDTO(newTicket);
     }
 }
 

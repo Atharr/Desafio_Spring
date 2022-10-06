@@ -28,21 +28,21 @@ public class PurchaseTicketRepo {
         return purchases;
     }
 
-    public void save(List<Product> newTicket, BigDecimal totalPrice) {
+    public PurchaseTicket save(List<Product> newTicket, BigDecimal totalPrice) {
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
-
-        PurchaseTicket ticket = new PurchaseTicket((long) (getAll().size()+1), newTicket, totalPrice);
+        List<PurchaseTicket> ticketList = new ArrayList<>(getAll());
+        PurchaseTicket ticket = new PurchaseTicket((long) (ticketList.size()+1), newTicket, totalPrice);
         System.out.println(ticket);
-//        List<PurchaseTicket> products = new ArrayList<>(getAll());
-//        products.addAll(newTicket);
 
-//        try {
-//            writer.writeValue(new File(linkFile), products);
-//        } catch (Exception ex) {
-//            System.out.println("Erro ao gravar o arquivo.");
-//        }
-//        return products;
+        ticketList.add(ticket);
+
+        try {
+            writer.writeValue(new File(linkFile), ticketList);
+        } catch (Exception ex) {
+            System.out.println("Erro ao gravar o arquivo.");
+        }
+        return ticket;
     }
 
 
