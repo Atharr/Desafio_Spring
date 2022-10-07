@@ -13,7 +13,7 @@ import java.util.Map;
  * @description Interface for the Product service
  */
 public interface IProduct {
-  Product getProduct(String name) throws NotFoundException;
+  ProductDTO getProductById(Long id) throws NotFoundException;
   List<ProductDTO> getAll(Map<String,String> params);
   List<ProductDTO> save(List<ProductSaveRequestDTO> product);
   Product updateOne(Long id, ProductSaveRequestDTO product);

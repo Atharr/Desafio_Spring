@@ -73,17 +73,17 @@ public class ProductService implements IProduct {
   }
 
   @Override
-  public Product getProduct(String name) throws NotFoundException {
-    Optional<Product> product = repo.getProduct(name);
+  public ProductDTO getProductById(Long id) throws NotFoundException {
+    Optional<Product> product = repo.getById(id);
 
     if (product.isEmpty()) {
       throw new NotFoundException("Produto não encontrado.");
     }
-    return product.get();
+    return new ProductDTO(product.get());
   }
 
   @Override
-  public List<ProductDTO> save(List<ProductSaveRequestDTO> product) {
+  public List<ProductDTO> save(List<ProductSaveRequestDTO> product) throws DuplicateException {
     int productListSize = repo.getAll().size();
     List<Product> newProducts = new ArrayList<>();
 
@@ -97,7 +97,8 @@ public class ProductService implements IProduct {
       }
     }
 
-    product.stream().forEach(p-> newProducts.add(new Product((long) productListSize + newProducts.size() +1,p)));
+    product.stream()
+            .forEach(p-> newProducts.add(new Product((long) productListSize + newProducts.size() + 1,p)));
 
     return repo.save(newProducts).stream()
               .map(ProductDTO::new)
@@ -105,7 +106,7 @@ public class ProductService implements IProduct {
   }
 
   @Override
-  public Product updateOne(Long id, ProductSaveRequestDTO product) {
+  public Product updateOne(Long id, ProductSaveRequestDTO product)  throws NotFoundException {
     Optional <Product> productOptional = repo.getById(id);
     if(productOptional.isEmpty()) {
       throw new NotFoundException("Produto não encontrado");
@@ -114,12 +115,11 @@ public class ProductService implements IProduct {
   }
 
   @Override
-public void delete(Long id) {
+public void delete(Long id) throws NotFoundException {
     Optional <Product> productOptional = repo.getById(id);
     if(productOptional.isEmpty()) {
       throw new NotFoundException("Produto não encontrado");
     }
   repo.delete(id);
-    //
  }
 }

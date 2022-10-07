@@ -1,12 +1,12 @@
 [ {
   "customerId" : 1,
-  "firstName" : "Rosy Mariana",
-  "lastName" : "Alves da Silva",
-  "phone" : "(38)13646848",
-  "email" : "rosy.santos@mercadolivre.com",
-  "address" : "rua qualquer",
-  "city" : "Diamantina",
-  "state" : "Minas Gerais",
+  "firstName" : "Bruna",
+  "lastName" : "Silva",
+  "phone" : "(22)13646848",
+  "email" : "bruna.silva@mercadolivre.com",
+  "address" : "rua não sei oq",
+  "city" : "RJ",
+  "state" : "RJ",
   "zipcode" : "39100-000"
 }, {
   "customerId" : 2,
@@ -18,4 +18,24 @@
   "city" : "Alcobaça",
   "state" : "Bahia",
   "zipcode" : "0000-000"
+}, {
+  "customerId" : 3,
+  "firstName" : "Hugo",
+  "lastName" : "Daniel",
+  "phone" : "(22)13646848",
+  "email" : "hugo.daniel@mercadolivre.com",
+  "address" : "rua qualquer",
+  "city" : "Diamantina",
+  "state" : "Minas Gerais",
+  "zipcode" : "39100-000"
+}, {
+  "customerId" : 4,
+  "firstName" : "Bruna",
+  "lastName" : "Silva",
+  "phone" : "(22)13646848",
+  "email" : "bruna.silva@mercadolivre.com",
+  "address" : "rua qualquer",
+  "city" : "Diamantina",
+  "state" : "Minas Gerais",
+  "zipcode" : "39100-000"
 } ]

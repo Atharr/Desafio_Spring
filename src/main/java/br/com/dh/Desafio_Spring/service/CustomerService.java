@@ -84,8 +84,21 @@ public class CustomerService implements ICustomer {
   }
 
   @Override
-  public CustomerDTO save(CustomerDTO customer) {
-    repo.save(customer);
-    return customer;
+  public Customer save(CustomerDTO customer) {
+    Long customerListSize = (long) repo.getAll().size();
+    Customer newCustomer = new Customer(customerListSize + 1, customer);
+    repo.save(newCustomer);
+    return newCustomer;
   }
+
+  @Override
+  public Customer updateOne(Long id, CustomerDTO customerUpdated) throws NotFoundException {
+    Optional<Customer> optionalCustomer = repo.getCustomer(id);
+    if (optionalCustomer.isEmpty()){
+      throw new NotFoundException("Cliente não encontrado");
+    }
+    return repo.updateOne(id, customerUpdated);
+  }
+
+
 }

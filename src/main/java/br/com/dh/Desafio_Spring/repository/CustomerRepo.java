@@ -1,7 +1,9 @@
 package br.com.dh.Desafio_Spring.repository;
 
 import br.com.dh.Desafio_Spring.dto.CustomerDTO;
+import br.com.dh.Desafio_Spring.dto.ProductSaveRequestDTO;
 import br.com.dh.Desafio_Spring.model.Customer;
+import br.com.dh.Desafio_Spring.model.Product;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -61,11 +63,14 @@ public class CustomerRepo {
    * @description Saves a new customer in the customers file.
    * @param newCustomer - the customer to be saved.
    */
-  public void save(CustomerDTO newCustomer) {
+  public void save(Customer newCustomer) {
     ObjectMapper mapper = new ObjectMapper();
     ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
 
-    List<CustomerDTO> customers = new ArrayList<>(getAll()).stream().map(CustomerDTO::new).collect(Collectors.toList());
+
+
+    List<Customer> customers = new ArrayList<>(getAll());
+
     customers.add(newCustomer);
 
     try {
@@ -74,4 +79,37 @@ public class CustomerRepo {
       System.out.println("Erro ao gravar o arquivo.");
     }
   }
+
+  public void update(List<Customer> listCustomerUpdated) {
+    ObjectMapper mapper = new ObjectMapper();
+    ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+
+    try {
+      writer.writeValue(new File(linkFile), listCustomerUpdated);
+    } catch (Exception ex) {
+      System.out.println("Erro ao gravar o arquivo.");
+    }
+  }
+
+  public Customer updateOne(Long id, CustomerDTO customer) {
+    List<Customer> customerList = getAll();
+
+    for (Customer c : customerList) {
+      if (c.getCustomerId().equals(id)) {
+        c.setFirstName(customer.getFirstName());
+        c.setLastName(customer.getLastName());
+        c.setEmail(customer.getEmail());
+        c.setAddress(customer.getAddress());
+        c.setCity(customer.getCity());
+        c.setZipcode(customer.getZipcode());
+        c.setPhone(customer.getPhone());
+        c.setState(customer.getState());
+      }
+    }
+    update(customerList);
+    return customerList.stream().filter(c -> c.getCustomerId().equals(id)).findFirst().get();
+  }
+
+
+
 }

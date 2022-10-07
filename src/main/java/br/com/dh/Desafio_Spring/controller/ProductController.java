@@ -24,6 +24,11 @@ public class ProductController {
     return new ResponseEntity<>(service.getAll(params), HttpStatus.OK);
   }
 
+  @GetMapping("/articles/{id}")
+  public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
+    return new ResponseEntity<>(service.getProductById(id), HttpStatus.OK);
+  }
+
   @PostMapping("/insert-articles-request")
   @ResponseBody
   public  ResponseEntity<List<ProductDTO>>save(@RequestBody List<ProductSaveRequestDTO> newProducts){
