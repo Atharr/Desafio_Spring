@@ -1,5 +1,6 @@
 package br.com.dh.Desafio_Spring.model;
 
+import br.com.dh.Desafio_Spring.dto.CustomerDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

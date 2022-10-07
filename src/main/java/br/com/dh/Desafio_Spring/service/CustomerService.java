@@ -1,5 +1,6 @@
 package br.com.dh.Desafio_Spring.service;
 
+import br.com.dh.Desafio_Spring.dto.CustomerDTO;
 import br.com.dh.Desafio_Spring.exception.NotFoundException;
 import br.com.dh.Desafio_Spring.model.Customer;
 import br.com.dh.Desafio_Spring.repository.CustomerRepo;
@@ -83,7 +84,8 @@ public class CustomerService implements ICustomer {
   }
 
   @Override
-  public List<Customer> save(List<Customer> customers) {
-    return repo.save(customers);
+  public CustomerDTO save(CustomerDTO customer) {
+    repo.save(customer);
+    return customer;
   }
 }

@@ -1,5 +1,6 @@
 package br.com.dh.Desafio_Spring.controller;
 
+import br.com.dh.Desafio_Spring.dto.CustomerDTO;
 import br.com.dh.Desafio_Spring.model.Customer;
 import br.com.dh.Desafio_Spring.service.ICustomer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +25,7 @@ public class CustomerController {
 
   @PostMapping
   @ResponseBody
-  public ResponseEntity<List<Customer>> save(@RequestBody List<Customer> newCustomers) {
-    return new ResponseEntity<>(service.save(newCustomers), HttpStatus.CREATED);
+  public ResponseEntity<CustomerDTO> save(@RequestBody @Valid CustomerDTO newCustomer) {
+    return new ResponseEntity<>(service.save(newCustomer), HttpStatus.CREATED);
   }
 }
