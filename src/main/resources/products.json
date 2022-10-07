@@ -115,4 +115,22 @@
   "quantity" : 7,
   "freeShipping" : true,
   "prestige" : "****"
+}, {
+  "productId" : 14,
+  "name" : "Serra de Bancada",
+  "category" : "Ferramentas",
+  "brand" : "Makita",
+  "price" : 1800.00,
+  "quantity" : 2,
+  "freeShipping" : true,
+  "prestige" : "****"
+}, {
+  "productId" : 15,
+  "name" : "Caneleira",
+  "category" : "Esportes",
+  "brand" : "Nike",
+  "price" : 40.00,
+  "quantity" : 10,
+  "freeShipping" : false,
+  "prestige" : "****"
 } ]

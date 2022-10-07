@@ -84,12 +84,22 @@ public class ProductService implements IProduct {
 
   @Override
   public List<ProductDTO> save(List<ProductSaveRequestDTO> product) {
+    int productListSize = repo.getAll().size();
+    List<Product> newProducts = new ArrayList<>();
+
+
     for (ProductSaveRequestDTO p : product){
+      if (repo.getProduct(p.getName()).isEmpty()) {
+        continue;
+      }
       if (repo.getProduct(p.getName()).get().getBrand().equals(p.getBrand())){
         throw new DuplicateException("Este produto já existe");
       }
     }
-    return repo.save(product).stream()
+
+    product.stream().forEach(p-> newProducts.add(new Product((long) productListSize + newProducts.size() +1,p)));
+
+    return repo.save(newProducts).stream()
               .map(ProductDTO::new)
               .collect(Collectors.toList());
   }

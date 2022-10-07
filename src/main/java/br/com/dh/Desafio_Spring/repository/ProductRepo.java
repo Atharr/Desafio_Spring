@@ -71,20 +71,21 @@ public class ProductRepo {
    * @description Saves a new product in the product list file.
    * @param newProducts - the product to be saved.
    */
-  public List<Product> save(List<ProductSaveRequestDTO> newProducts) {
+  public List<Product> save(List<Product> newProducts) {
     ObjectMapper mapper = new ObjectMapper();
     ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
 
     List<Product> products = new ArrayList<>(getAll());
-    newProducts
-            .forEach(p -> products.add(new Product((long) products.size() + 1, p)));
+    products.addAll(newProducts);
+//    newProducts
+//            .forEach(p -> products.add(new Product((long) products.size() + 1, p)));
 
     try {
       writer.writeValue(new File(linkFile), products);
     } catch (Exception ex) {
       System.out.println("Erro ao gravar o arquivo.");
     }
-    return products;
+    return newProducts;
   }
 
   public void decreaseProductStock(Long productId, int quantinty){
