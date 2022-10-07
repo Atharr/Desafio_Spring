@@ -103,4 +103,22 @@ public class ProductService implements IProduct {
               .map(ProductDTO::new)
               .collect(Collectors.toList());
   }
+
+  @Override
+  public Product updateOne(Long id, ProductSaveRequestDTO product) {
+    Optional <Product> productOptional = repo.getById(id);
+    if(productOptional.isEmpty()) {
+      throw new NotFoundException("Produto não encontrado");
+    }
+    return repo.updateOne(id, product);
+  }
+
+  @Override
+public void delete(Long id) {
+    Optional <Product> productOptional = repo.getById(id);
+    if(productOptional.isEmpty()) {
+      throw new NotFoundException("Produto não encontrado");
+    }
+  repo.delete(id);
+ }
 }
