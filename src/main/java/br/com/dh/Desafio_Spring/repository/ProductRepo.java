@@ -77,8 +77,6 @@ public class ProductRepo {
 
     List<Product> products = new ArrayList<>(getAll());
     products.addAll(newProducts);
-//    newProducts
-//            .forEach(p -> products.add(new Product((long) products.size() + 1, p)));
 
     try {
       writer.writeValue(new File(linkFile), products);
@@ -86,6 +84,17 @@ public class ProductRepo {
       System.out.println("Erro ao gravar o arquivo.");
     }
     return newProducts;
+  }
+
+  public void update(List<Product> listProductUpdated){
+    ObjectMapper mapper = new ObjectMapper();
+    ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+
+    try {
+      writer.writeValue(new File(linkFile), listProductUpdated);
+    } catch (Exception ex) {
+      System.out.println("Erro ao gravar o arquivo.");
+    }
   }
 
   public void decreaseProductStock(Long productId, int quantinty){
@@ -96,5 +105,6 @@ public class ProductRepo {
         p.setQuantity(p.getQuantity() - quantinty);
       }
     }
+    update(listProducts);
   }
 }
