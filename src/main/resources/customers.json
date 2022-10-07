@@ -1,3 +1,21 @@
-[
-
-]
+[ {
+  "customerId" : 1,
+  "firstName" : null,
+  "lastName" : "Santos",
+  "phone" : "(38)13646848",
+  "email" : "rosysantoscom",
+  "address" : "rua qualquer",
+  "city" : "Diamantina",
+  "state" : "Minas Gerais",
+  "zipcode" : "39100-000"
+}, {
+  "customerId" : 2,
+  "firstName" : "Marcello",
+  "lastName" : "Alves",
+  "phone" : "(38)13646848",
+  "email" : "marc",
+  "address" : "rua qualquer",
+  "city" : "Alcobaça",
+  "state" : "Bahia",
+  "zipcode" : "0000-000"
+} ]
