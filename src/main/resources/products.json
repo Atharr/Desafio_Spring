@@ -1,21 +1,30 @@
 [ {
-  "productId" : 3,
-  "name" : "Soldadora",
+  "productId" : 2,
+  "name" : "Serra de Bancada",
   "category" : "Ferramentas",
-  "brand" : "Black & Decker",
-  "price" : 350.00,
-  "quantity" : 10,
+  "brand" : "FORTGPRO",
+  "price" : 1800.00,
+  "quantity" : 5,
   "freeShipping" : true,
-  "prestige" : "***"
+  "prestige" : "****"
+}, {
+  "productId" : 3,
+  "name" : "Serra de Bancada",
+  "category" : "Ferramentas",
+  "brand" : "FORTGPRO",
+  "price" : 1800.00,
+  "quantity" : 5,
+  "freeShipping" : true,
+  "prestige" : "****"
 }, {
   "productId" : 4,
-  "name" : "Chuteira",
-  "category" : "Esportes",
-  "brand" : "Adidas",
-  "price" : 235.00,
-  "quantity" : 6,
+  "name" : "Serra de Bancada",
+  "category" : "Ferramentas",
+  "brand" : "FORTGPRO",
+  "price" : 1800.00,
+  "quantity" : 5,
   "freeShipping" : true,
-  "prestige" : "*****"
+  "prestige" : "****"
 }, {
   "productId" : 5,
   "name" : "Mini Cama elastica",
@@ -88,4 +97,13 @@
   "quantity" : 9,
   "freeShipping" : true,
   "prestige" : "***"
+}, {
+  "productId" : 12,
+  "name" : "Furadeira",
+  "category" : "Ferramentas",
+  "brand" : "Makita",
+  "price" : 500.00,
+  "quantity" : 7,
+  "freeShipping" : true,
+  "prestige" : "****"
 } ]
