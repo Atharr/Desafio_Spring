@@ -1,21 +1,3 @@
-[ {
-  "customerId" : 3,
-  "firstName" : "Hugo",
-  "lastName" : "Daniel",
-  "phone" : "(22)13646848",
-  "email" : "hugo.daniel@mercadolivre.com",
-  "address" : "rua qualquer",
-  "city" : "Diamantina",
-  "state" : "Minas Gerais",
-  "zipcode" : "39100-000"
-}, {
-  "customerId" : 4,
-  "firstName" : "Bruna",
-  "lastName" : "Silva",
-  "phone" : "(22)13646848",
-  "email" : "bruna.silva@mercadolivre.com",
-  "address" : "rua qualquer",
-  "city" : "Diamantina",
-  "state" : "Minas Gerais",
-  "zipcode" : "39100-000"
-}]
+
+[]
+
