@@ -1,6 +1,7 @@
 package br.com.dh.Desafio_Spring.service;
 
 import br.com.dh.Desafio_Spring.dto.CustomerDTO;
+import br.com.dh.Desafio_Spring.exception.DuplicateException;
 import br.com.dh.Desafio_Spring.exception.NotFoundException;
 import br.com.dh.Desafio_Spring.model.Customer;
 import br.com.dh.Desafio_Spring.repository.CustomerRepo;
@@ -85,6 +86,12 @@ public class CustomerService implements ICustomer {
 
   @Override
   public CustomerDTO save(CustomerDTO customer) {
+    List<Customer> duplicateCustomer = repo.getAll();
+    for (Customer customers : duplicateCustomer) {
+      if (customers.getEmail().equalsIgnoreCase(customer.getEmail())) {
+        throw new DuplicateException("Cliente já cadastrado.");
+      }
+    }
     repo.save(customer);
     return customer;
   }
