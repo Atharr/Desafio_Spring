@@ -1,1 +1,11 @@
-
+[ {
+  "customerId" : 1,
+  "firstName" : "Rosy",
+  "lastName" : "Santos",
+  "phone" : "(38)13646848",
+  "email" : "rosy.santos@mercadolivre.com",
+  "address" : "rua qualquer",
+  "city" : "Diamantina",
+  "state" : "Minas Gerais",
+  "zipcode" : "39100-000"
+} ]
