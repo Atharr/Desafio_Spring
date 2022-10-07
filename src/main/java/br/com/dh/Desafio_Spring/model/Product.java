@@ -35,21 +35,6 @@ public class Product implements Comparable<Product> {
     this.freeShipping = p.getFreeShipping();
     this.prestige = p.getPrestige();
   }
-
-  @Override
-  public String toString() {
-    return "Product{" +
-            "productId=" + productId +
-            ", name='" + name + '\'' +
-            ", category='" + category + '\'' +
-            ", brand='" + brand + '\'' +
-            ", price=" + price +
-            ", quantity=" + quantity +
-            ", freeShipping=" + freeShipping +
-            ", prestige='" + prestige + '\'' +
-            '}';
-  }
-
   @Override
   public int compareTo(Product other) {
     return this.getName().compareTo(other.getName());
