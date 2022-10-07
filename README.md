@@ -12,5 +12,7 @@ Desafio Spring do Bootcamp Java
 3. Java version: `Java 11.0.4`.
 
 ## Documentation
-1. Postman Docs
-   https://documenter.getpostman.com/view/23644240/2s83zgtjUd#intro
+- Postman Docs: [Desafio_Spring_Grupo01](https://documenter.getpostman.com/view/23644240/2s83zgtjUd#intro)
+   
+## Projeto
+- Trello: [Bootcamp Grupo 1](https://trello.com/b/XfUJG6ib/desafio-spring)
