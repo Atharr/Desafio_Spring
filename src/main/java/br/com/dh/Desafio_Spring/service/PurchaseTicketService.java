@@ -2,6 +2,7 @@ package br.com.dh.Desafio_Spring.service;
 
 import br.com.dh.Desafio_Spring.dto.ProductRequestDTO;
 import br.com.dh.Desafio_Spring.dto.PurchaseTicketDTO;
+import br.com.dh.Desafio_Spring.exception.NotFoundException;
 import br.com.dh.Desafio_Spring.exception.StockNotAvailableException;
 import br.com.dh.Desafio_Spring.model.Product;
 import br.com.dh.Desafio_Spring.model.PurchaseTicket;
@@ -31,10 +32,14 @@ public class PurchaseTicketService implements IPurchaseTicket {
 
         List<Product> listProductFilter = new ArrayList<>();
         product.forEach(p -> {
+
             newPurchaseTicket.forEach(n -> {
-                if (Objects.equals(p.getProductId(), n.getProductId())) {
-                    if (p.getQuantity() - n.getQuantity() < 0){
-                        throw new StockNotAvailableException("Stock de produto insuficiente");
+                if(repoProduct.getById(n.getProductId()).isEmpty()){
+                    throw new NotFoundException("Produto não existe");
+                }
+                    if (Objects.equals(p.getProductId(), n.getProductId())) {
+                        if (p.getQuantity() - n.getQuantity() < 0){
+                            throw new StockNotAvailableException("Stock de produto insuficiente");
                     }
                     repoProduct.decreaseProductStock(n.getProductId(),n.getQuantity());
                     p.setQuantity(n.getQuantity());
@@ -42,10 +47,11 @@ public class PurchaseTicketService implements IPurchaseTicket {
                 }
             });
         });
-        BigDecimal totalPrice = listProductFilter.stream().map((p) -> BigDecimal.valueOf(p.getQuantity()).multiply(p.getPrice())).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal totalPrice = listProductFilter.stream()
+                .map((p) -> BigDecimal.valueOf(p.getQuantity()).multiply(p.getPrice()))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         PurchaseTicket newTicket = repoTicket.save(listProductFilter, totalPrice);
         return new PurchaseTicketDTO(newTicket);
     }
 }
-

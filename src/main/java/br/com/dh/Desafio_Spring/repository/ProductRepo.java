@@ -55,6 +55,17 @@ public class ProductRepo {
     return Optional.empty();
   }
 
+  public Optional<Product> getById(Long productId) {
+    List<Product> products = getAll();
+
+    for (Product p: products) {
+      if (p.getProductId().equals(productId)) {
+        return Optional.of(p);
+      }
+    }
+    return Optional.empty();
+  }
+
   /**
    * @name save
    * @description Saves a new product in the product list file.
