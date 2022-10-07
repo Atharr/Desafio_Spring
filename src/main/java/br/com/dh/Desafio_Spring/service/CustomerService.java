@@ -100,5 +100,14 @@ public class CustomerService implements ICustomer {
     return repo.updateOne(id, customerUpdated);
   }
 
+  @Override
+  public void deleteOne(Long id) {
+    Optional<Customer> optionalCustomer = repo.getCustomer(id);
+    if (optionalCustomer.isEmpty()){
+      throw new NotFoundException("Cliente não encontrado");
+    }
+    repo.deleteOne(id);
+  }
+
 
 }

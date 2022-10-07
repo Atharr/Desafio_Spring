@@ -12,4 +12,5 @@ public interface ICustomer {
   List<Customer> getAll(Map<String,String> params);
   Customer save(CustomerDTO customer);
   Customer updateOne(Long id, CustomerDTO customerUpdated);
+  void deleteOne(Long id);
 }

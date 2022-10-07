@@ -110,6 +110,10 @@ public class CustomerRepo {
     return customerList.stream().filter(c -> c.getCustomerId().equals(id)).findFirst().get();
   }
 
-
-
+  public void deleteOne(Long id){
+    List<Customer> customerList = getAll().stream()
+            .filter(p -> p.getCustomerId() != id)
+            .collect(Collectors.toList());
+    update(customerList);
+  }
 }

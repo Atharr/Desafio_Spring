@@ -1,24 +1,4 @@
 [ {
-  "customerId" : 1,
-  "firstName" : "Bruna",
-  "lastName" : "Silva",
-  "phone" : "(22)13646848",
-  "email" : "bruna.silva@mercadolivre.com",
-  "address" : "rua não sei oq",
-  "city" : "RJ",
-  "state" : "RJ",
-  "zipcode" : "39100-000"
-}, {
-  "customerId" : 2,
-  "firstName" : "Marcello",
-  "lastName" : "Alves dos Santos",
-  "phone" : "(38)13646848",
-  "email" : "marcelo@mercadolivre.com",
-  "address" : "rua qualquer",
-  "city" : "Alcobaça",
-  "state" : "Bahia",
-  "zipcode" : "0000-000"
-}, {
   "customerId" : 3,
   "firstName" : "Hugo",
   "lastName" : "Daniel",

@@ -34,4 +34,10 @@ public class CustomerController {
   public ResponseEntity<Customer> updateOne(@RequestBody @Valid CustomerDTO newCustomer, @PathVariable Long id) {
     return new ResponseEntity<>(service.updateOne(id, newCustomer), HttpStatus.OK);
   }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteOne( @PathVariable Long id) {
+    service.deleteOne(id);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
 }
