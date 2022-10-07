@@ -12,7 +12,5 @@ Desafio Spring do Bootcamp Java
 3. Java version: `Java 11.0.4`.
 
 ## Documentation
-1. Entity–relationship model
-
-3. Postman Docs
+1. Postman Docs
    https://documenter.getpostman.com/view/23644240/2s83zgtjUd#intro
