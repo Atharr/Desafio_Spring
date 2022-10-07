@@ -1,5 +1,6 @@
 package br.com.dh.Desafio_Spring.repository;
 
+import br.com.dh.Desafio_Spring.dto.ProductSaveRequestDTO;
 import br.com.dh.Desafio_Spring.model.Product;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,6 +55,17 @@ public class ProductRepo {
     return Optional.empty();
   }
 
+  public Optional<Product> getById(Long productId) {
+    List<Product> products = getAll();
+
+    for (Product p: products) {
+      if (p.getProductId().equals(productId)) {
+        return Optional.of(p);
+      }
+    }
+    return Optional.empty();
+  }
+
   /**
    * @name save
    * @description Saves a new product in the product list file.
@@ -65,12 +77,24 @@ public class ProductRepo {
 
     List<Product> products = new ArrayList<>(getAll());
     products.addAll(newProducts);
+//    newProducts
+//            .forEach(p -> products.add(new Product((long) products.size() + 1, p)));
 
     try {
       writer.writeValue(new File(linkFile), products);
     } catch (Exception ex) {
       System.out.println("Erro ao gravar o arquivo.");
     }
-    return products;
+    return newProducts;
+  }
+
+  public void decreaseProductStock(Long productId, int quantinty){
+    List<Product> listProducts = getAll();
+
+    for (Product p : listProducts){
+      if (p.getProductId().equals(productId)) {
+        p.setQuantity(p.getQuantity() - quantinty);
+      }
+    }
   }
 }

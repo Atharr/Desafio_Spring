@@ -1,7 +1,9 @@
 package br.com.dh.Desafio_Spring.repository;
 
+import br.com.dh.Desafio_Spring.exception.ServiceUnavailableException;
 import br.com.dh.Desafio_Spring.model.Product;
 import br.com.dh.Desafio_Spring.model.PurchaseTicket;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -28,7 +30,7 @@ public class PurchaseTicketRepo {
         return purchases;
     }
 
-    public PurchaseTicket save(List<Product> newTicket, BigDecimal totalPrice) {
+    public PurchaseTicket save(List<Product> newTicket, BigDecimal totalPrice) throws ServiceUnavailableException {
         ObjectMapper mapper = new ObjectMapper();
         ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         List<PurchaseTicket> ticketList = new ArrayList<>(getAll());
@@ -38,11 +40,10 @@ public class PurchaseTicketRepo {
         try {
             writer.writeValue(new File(linkFile), ticketList);
         } catch (Exception ex) {
-            System.out.println("Erro ao gravar o arquivo.");
+            throw new ServiceUnavailableException("Não foi possível realizar compra");
         }
         return ticket;
     }
-
 
 
 }
