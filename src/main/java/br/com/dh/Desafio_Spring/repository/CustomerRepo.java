@@ -1,5 +1,6 @@
 package br.com.dh.Desafio_Spring.repository;
 
+import br.com.dh.Desafio_Spring.dto.CustomerDTO;
 import br.com.dh.Desafio_Spring.model.Customer;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 /**
@@ -56,22 +58,20 @@ public class CustomerRepo {
 
   /**
    * @name save
-   * @description Saves a list of new customers in the customers file.
-   * @param newCustomers - the customers to be saved.
+   * @description Saves a new customer in the customers file.
+   * @param newCustomer - the customer to be saved.
    */
-  public List<Customer> save(List<Customer> newCustomers) {
+  public void save(CustomerDTO newCustomer) {
     ObjectMapper mapper = new ObjectMapper();
     ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
 
-    List<Customer> customers = new ArrayList<>(getAll());
-    customers.addAll(newCustomers);
+    List<CustomerDTO> customers = new ArrayList<>(getAll()).stream().map(CustomerDTO::new).collect(Collectors.toList());
+    customers.add(newCustomer);
 
     try {
       writer.writeValue(new File(linkFile), customers);
     } catch (Exception ex) {
       System.out.println("Erro ao gravar o arquivo.");
     }
-    return customers;
   }
-
 }

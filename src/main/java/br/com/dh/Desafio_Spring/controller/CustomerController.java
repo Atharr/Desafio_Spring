@@ -25,7 +25,7 @@ public class CustomerController {
 
   @PostMapping
   @ResponseBody
-  public ResponseEntity<List<CustomerDTO>> save(@Valid @RequestBody List<Customer> newCustomers) {
-    return new ResponseEntity<>(service.save(newCustomers), HttpStatus.CREATED);
+  public ResponseEntity<CustomerDTO> save(@RequestBody @Valid CustomerDTO newCustomer) {
+    return new ResponseEntity<>(service.save(newCustomer), HttpStatus.CREATED);
   }
 }

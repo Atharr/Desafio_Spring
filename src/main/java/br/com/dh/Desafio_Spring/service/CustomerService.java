@@ -1,7 +1,6 @@
 package br.com.dh.Desafio_Spring.service;
 
 import br.com.dh.Desafio_Spring.dto.CustomerDTO;
-import br.com.dh.Desafio_Spring.dto.ProductDTO;
 import br.com.dh.Desafio_Spring.exception.NotFoundException;
 import br.com.dh.Desafio_Spring.model.Customer;
 import br.com.dh.Desafio_Spring.repository.CustomerRepo;
@@ -85,9 +84,8 @@ public class CustomerService implements ICustomer {
   }
 
   @Override
-  public List<CustomerDTO> save(List<Customer> customers) {
-    return repo.save(customers).stream()
-            .map(CustomerDTO::new)
-            .collect(Collectors.toList());
+  public CustomerDTO save(CustomerDTO customer) {
+    repo.save(customer);
+    return customer;
   }
 }
