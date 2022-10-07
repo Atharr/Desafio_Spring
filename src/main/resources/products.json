@@ -1,22 +1,4 @@
 [ {
-  "productId" : 1,
-  "name" : "Serra de Bancada",
-  "category" : "Ferramentas",
-  "brand" : "FORTGPRO",
-  "price" : 1800.00,
-  "quantity" : 0,
-  "freeShipping" : true,
-  "prestige" : "****"
-}, {
-  "productId" : 2,
-  "name" : "Furadeira",
-  "category" : "Ferramentas",
-  "brand" : "Black & Decker",
-  "price" : 500,
-  "quantity" : 0,
-  "freeShipping" : true,
-  "prestige" : "****"
-}, {
   "productId" : 3,
   "name" : "Soldadora",
   "category" : "Ferramentas",
@@ -106,31 +88,4 @@
   "quantity" : 9,
   "freeShipping" : true,
   "prestige" : "***"
-}, {
-  "productId" : 13,
-  "name" : "Furadeira",
-  "category" : "Ferramentas",
-  "brand" : "Makita",
-  "price" : 500.00,
-  "quantity" : 7,
-  "freeShipping" : true,
-  "prestige" : "****"
-}, {
-  "productId" : 14,
-  "name" : "Serra de Bancada",
-  "category" : "Ferramentas",
-  "brand" : "Makita",
-  "price" : 1800.00,
-  "quantity" : 2,
-  "freeShipping" : true,
-  "prestige" : "****"
-}, {
-  "productId" : 15,
-  "name" : "Caneleira",
-  "category" : "Esportes",
-  "brand" : "Nike",
-  "price" : 40.00,
-  "quantity" : 10,
-  "freeShipping" : false,
-  "prestige" : "****"
 } ]

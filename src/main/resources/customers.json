@@ -1,1 +1,21 @@
-[ ]
+[ {
+  "customerId" : 1,
+  "firstName" : "Rosy Mariana",
+  "lastName" : "Alves da Silva",
+  "phone" : "(38)13646848",
+  "email" : "rosy.santos@mercadolivre.com",
+  "address" : "rua qualquer",
+  "city" : "Diamantina",
+  "state" : "Minas Gerais",
+  "zipcode" : "39100-000"
+}, {
+  "customerId" : 2,
+  "firstName" : "Marcello",
+  "lastName" : "Alves dos Santos",
+  "phone" : "(38)13646848",
+  "email" : "marcelo@mercadolivre.com",
+  "address" : "rua qualquer",
+  "city" : "Alcobaça",
+  "state" : "Bahia",
+  "zipcode" : "0000-000"
+} ]
