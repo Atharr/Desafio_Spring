@@ -25,7 +25,19 @@ public class CustomerController {
 
   @PostMapping
   @ResponseBody
-  public ResponseEntity<CustomerDTO> save(@RequestBody @Valid CustomerDTO newCustomer) {
+  public ResponseEntity<Customer> save(@RequestBody @Valid CustomerDTO newCustomer) {
     return new ResponseEntity<>(service.save(newCustomer), HttpStatus.CREATED);
+  }
+
+  @PutMapping("/{id}")
+  @ResponseBody
+  public ResponseEntity<Customer> updateOne(@RequestBody @Valid CustomerDTO newCustomer, @PathVariable Long id) {
+    return new ResponseEntity<>(service.updateOne(id, newCustomer), HttpStatus.OK);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteOne( @PathVariable Long id) {
+    service.deleteOne(id);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 }

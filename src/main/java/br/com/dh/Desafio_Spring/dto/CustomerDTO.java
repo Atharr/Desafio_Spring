@@ -14,7 +14,6 @@ import javax.validation.constraints.Size;
 @Setter
 @NoArgsConstructor
 public class CustomerDTO {
-    private Long customerId;
     @NotNull(message = "First name is required")
     @NotEmpty(message = "First name must not be empty")
     private String firstName;
@@ -39,7 +38,6 @@ public class CustomerDTO {
     private String zipcode;
 
     public CustomerDTO(Customer customer) {
-        this.customerId = customer.getCustomerId();
         this.firstName = customer.getFirstName();
         this.lastName = customer.getLastName();
         this.phone = customer.getPhone();
