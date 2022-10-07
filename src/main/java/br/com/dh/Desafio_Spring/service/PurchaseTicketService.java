@@ -3,6 +3,7 @@ package br.com.dh.Desafio_Spring.service;
 import br.com.dh.Desafio_Spring.dto.ProductRequestDTO;
 import br.com.dh.Desafio_Spring.dto.PurchaseTicketDTO;
 import br.com.dh.Desafio_Spring.exception.NotFoundException;
+import br.com.dh.Desafio_Spring.exception.ServiceUnavailableException;
 import br.com.dh.Desafio_Spring.exception.StockNotAvailableException;
 import br.com.dh.Desafio_Spring.model.Product;
 import br.com.dh.Desafio_Spring.model.PurchaseTicket;
@@ -27,7 +28,7 @@ public class PurchaseTicketService implements IPurchaseTicket {
     private ProductRepo repoProduct;
 
     @Override
-    public PurchaseTicketDTO save(List<ProductRequestDTO> newPurchaseTicket) {
+    public PurchaseTicketDTO save(List<ProductRequestDTO> newPurchaseTicket) throws ServiceUnavailableException {
         List<Product> product = repoProduct.getAll();
 
         List<Product> listProductFilter = new ArrayList<>();

@@ -45,4 +45,17 @@ public class HandlerExceptions {
 
     return new ResponseEntity<>(exceptionDetails, HttpStatus.UNPROCESSABLE_ENTITY);
   }
+
+
+  @ExceptionHandler(ServiceUnavailableException.class)
+  public ResponseEntity<ExceptionDetails> handleStockNotAvailableException(ServiceUnavailableException e){
+    ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+            .title("Erro no servidor")
+            .message(e.getMessage())
+            .status(HttpStatus.SERVICE_UNAVAILABLE.value())
+            .timeStamp(LocalDateTime.now())
+            .build();
+
+    return new ResponseEntity<>(exceptionDetails, HttpStatus.SERVICE_UNAVAILABLE);
+  }
 }
