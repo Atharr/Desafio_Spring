@@ -21,6 +21,20 @@ public class Customer implements Comparable<Customer> {
   private String state;
   private String zipcode;
 
+
+
+  public Customer(Long i, CustomerDTO newCustomer) {
+    this.customerId = i;
+    this.firstName = newCustomer.getFirstName();
+    this.lastName = newCustomer.getLastName();
+    this.phone = newCustomer.getPhone();
+    this.email = newCustomer.getEmail();
+    this.address = newCustomer.getAddress();
+    this.city = newCustomer.getCity();
+    this.state = newCustomer.getState();
+    this.zipcode = newCustomer.getZipcode();
+  }
+
   @Override
 /**
  * @name compareTo

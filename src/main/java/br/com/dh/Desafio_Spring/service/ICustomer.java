@@ -10,5 +10,7 @@ import java.util.Map;
 public interface ICustomer {
   Customer getCustomer(Long id) throws NotFoundException;
   List<Customer> getAll(Map<String,String> params);
-  CustomerDTO save(CustomerDTO customer);
+  Customer save(CustomerDTO customer);
+  Customer updateOne(Long id, CustomerDTO customerUpdated);
+  void deleteOne(Long id);
 }

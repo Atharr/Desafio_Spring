@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,6 +18,7 @@ public class ProductDTO {
   private Long productId;
   private String name;
   private Integer quantity;
+  private BigDecimal price;
 
   /**
    * Receives a single Product object and assigns the productId, name and quantity properties.
@@ -25,5 +28,6 @@ public class ProductDTO {
     this.productId = product.getProductId();
     this.name = product.getName();
     this.quantity = product.getQuantity();
+    this.price = product.getPrice();
   }
 }
